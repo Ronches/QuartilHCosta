@@ -26,17 +26,24 @@ except locale.Error:
     except locale.Error:
         locale.setlocale(locale.LC_TIME, '')  # No Windows pode precisar ser 'Portuguese_Brazil.1252'
 
-dia_hoje = datetime.date.today() - datetime.timedelta(days=10)# Número do mês (com dois dígitos)
+dia_hoje = datetime.today() - timedelta(days=10)
 
 mes_numero = dia_hoje.strftime("%m")
 mes_nome = dia_hoje.strftime("%B").upper()
 ano = dia_hoje.strftime("%Y")
 
 # Caminho da pasta onde estão os arquivos CSV
-caminho_pasta = f"https://github.com/Ronches/QuartilHCosta/blob/main/"  # altere para o caminho desejado
+#caminho_pasta = f"https://github.com/Ronches/QuartilHCosta/blob/main/"  # altere para o caminho desejado
 
 # Lista todos os arquivos .csv da pasta
-arquivos_csv = glob.glob(os.path.join(caminho_pasta, "*.csv"))
+#arquivos_csv = glob.glob(os.path.join(caminho_pasta, "*.csv"))
+
+uploaded_file = st.file_uploader("Selecione um arquivo CSV", type="csv", accept_multiple_files=True)
+
+if uploaded_file:
+    calculadoras = pd.concat([
+        pd.read_csv(file, sep=";", encoding="utf-8") for file in uploaded_file
+    ], ignore_index=True)
 
 # Lê e empilha todos os arquivos em um único DataFrame
 calculadoras = pd.concat([pd.read_csv(arquivo, sep=";", encoding="utf-8") for arquivo in arquivos_csv], ignore_index=True)
