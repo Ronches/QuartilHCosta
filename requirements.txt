@@ -4,8 +4,3 @@ plotly
 pyodbc
 sqlalchemy
 yagmail
-datetime
-smtplib
-email
-mimetypes
-ssl
