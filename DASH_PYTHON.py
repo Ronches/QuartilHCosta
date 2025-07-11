@@ -10,15 +10,21 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import plotly.express as px
-from datetime import datetime, timedelta
 import locale
-import datetime
 import glob
 import os
 import numpy as np
+import locale
+from datetime import datetime, timedelta
 
 
-locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')  # No Windows pode precisar ser 'Portuguese_Brazil.1252'
+try:
+    locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')  # Linux e Streamlit Cloud
+except locale.Error:
+    try:
+        locale.setlocale(locale.LC_TIME, 'Portuguese_Brazil.1252')  # Windows
+    except locale.Error:
+        locale.setlocale(locale.LC_TIME, '')  # No Windows pode precisar ser 'Portuguese_Brazil.1252'
 
 dia_hoje = datetime.date.today() - datetime.timedelta(days=10)# Número do mês (com dois dígitos)
 
@@ -27,7 +33,7 @@ mes_nome = dia_hoje.strftime("%B").upper()
 ano = dia_hoje.strftime("%Y")
 
 # Caminho da pasta onde estão os arquivos CSV
-caminho_pasta = f"A:/01 - MIS/01 - Carteiras/00 - Script R/00. Institucional/04. AUXILIAR QUARTIL/01 - BASE/{ano}/{mes_numero} - {mes_nome}"  # altere para o caminho desejado
+caminho_pasta = f"https://github.com/Ronches/QuartilHCosta/blob/main/"  # altere para o caminho desejado
 
 # Lista todos os arquivos .csv da pasta
 arquivos_csv = glob.glob(os.path.join(caminho_pasta, "*.csv"))
