@@ -1,0 +1,19 @@
+matplotlib.pyplot as plt
+pandas as pd
+pyodbc
+from sqlalchemy create_engine
+yagmail
+from sqlalchemy.engine URL
+from sqlalchemy create_engine
+datetime
+from datetime datetime, timedelta
+os
+smtplib, ssl, os, mimetypes
+from email.message EmailMessage
+from email.utils make_msgid
+smtplib
+ssl
+from email.message EmailMessage
+from email.utils make_msgid
+mimetypes
+os
